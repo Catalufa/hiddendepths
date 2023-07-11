@@ -54,7 +54,6 @@ html, body, .cover {
   font-family: 'Righteous', cursive;
   font-size: 9em;
   font-weight: normal;
-  text-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
   text-align: center;
   color: #007AAE;
 }
@@ -91,7 +90,7 @@ html, body, .cover {
   position: absolute;
   padding: 12vw;
   border-radius: 50%;
-  background: #6ABAD3;
+  background: #003b53;
   left: -7vw;
   top: -7vw;
   z-index: -1;
@@ -101,7 +100,7 @@ html, body, .cover {
   position: absolute;
   padding: 12vw;
   border-radius: 50%;
-  background: #6ABAD3;
+  background: #003b53;
   left: 50vw;
   top: -18vw;
   z-index: -1;
@@ -111,7 +110,7 @@ html, body, .cover {
   position: absolute;
   padding: 13vw;
   border-radius: 50%;
-  background: #6ABAD3;
+  background: #003b53;
   right: -18vw;
   top: 10%;
   z-index: -1;
@@ -121,7 +120,7 @@ html, body, .cover {
   position: absolute;
   padding: 6vw;
   border-radius: 50%;
-  background: #6ABAD3;
+  background: #003b53;
   right: 7vw;
   bottom: 5vw;
   z-index: -1;
@@ -131,7 +130,7 @@ html, body, .cover {
   position: absolute;
   padding: 20vw;
   border-radius: 50%;
-  background: #6ABAD3;
+  background: #003b53;
   left: 8vw;
   bottom: -32vw;
   z-index: -1;
