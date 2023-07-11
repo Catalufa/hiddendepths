@@ -13,7 +13,7 @@
 }
 
 body {
-  background: #06748B;
+  background: #004562;
 
 }
 
@@ -51,20 +51,21 @@ html, body, .cover {
 }
 
 .cover h1 {
-  font-family: 'CoralSea';
+  font-family: 'Righteous', cursive;
   font-size: 9em;
   font-weight: normal;
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.7);
   text-align: center;
+  color: #007AAE;
 }
 
 .cover h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Righteous', cursive;
   font-size: 1.8em;
   font-weight: normal;
   letter-spacing: 1px;
-  color: #fff;
   text-align: center;
+  color: #000000;
 }
 
 .cover button {
