@@ -7,10 +7,16 @@
     --bright2: rgb(255, 231, 51);
 }
 
+html {
+    overflow: hidden;
+}
+
 * {
     margin: 0;
     color: white;
     font-family: 'Red Hat Display', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,18 +24,54 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-h1 {
+h1#title {
     font-size: 3rem;
+    transition-property: transform, opacity, font-size;
+    transition-duration: .75s;
+    cursor: default;
+    position: relative;
+}
+
+h1#title::before {
+    content: attr(data-before);
+    position: absolute;
+    right: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+h1#title::after {
+    content: attr(data-after);
+    position: absolute;
+    left: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+h1#title.heading-mono::before, h1#title.heading-mono::after {
+    font-family: monospace;
+}
+
+h1#title:hover {
+    opacity: 1 !important;
 }
 
 b {
     color: var(--secondary);
 }
 
+body {
+    background: var(--bg);
+    overflow: hidden;
+}
+
 html, body, section {
     width: 100%;
     height: 100%;
-    background: var(--bg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
 }
 
 section, .flex {
@@ -71,6 +113,11 @@ a {
     z-index: 2;
     box-shadow: inset 0px -4px 0px -2px var(--secondary);
     transition: 0.5s;
+    cursor: pointer;
+}
+
+a.inverted {
+    box-shadow: inset 0px -4px 0px -2px var(--bright2);
 }
 
 a::before {
@@ -80,13 +127,30 @@ a::before {
     transition: 0.5s;
 }
 
+a.inverted::before {
+    color: var(--bright2);
+}
+
 a:hover {
     box-shadow: inset 0px calc(-1rem - 8px) 0px -2px var(--secondary);
-    color: black;
+    /* color: black; */
+}
+
+a.inverted:hover {
+    box-shadow: inset 0px calc(-1rem - 8px) 0px -2px var(--bright2);
 }
 
 a:hover::before {
     color: white
+}
+
+a.inverted:hover::before {
+    color: black;
+}
+
+#logo-container {
+    transition-property: transform;
+    transition-duration: .6s;
 }
 
 #logo {
@@ -113,17 +177,28 @@ a:hover::before {
     transform: translateY(-1rem);
 }
 
+section#home {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+#home-move {
+    z-index: 1;
+    pointer-events: none;
+}
+
 #home-content {
     position: relative;
+    transition-property: opacity;
+    transition-duration: .5s;
 }
 
 #ripple, #ripple::after {
     opacity: 0;
     width: 1px;
     height: .2px;
-    border: #FFF 3px solid;
     border-radius: 100%;
-    filter: opacity(0.5)
+    filter: opacity(0.5);
 }
 
 #ripple {
@@ -132,13 +207,271 @@ a:hover::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translateY(-44px);
+    transform: translateY(-40px);
+    border: #FFF 3px solid;
+    transition-property: border;
+    transition-duration: 0.5s;
 }
 
 #ripple::after {
     content: "";
     animation: ripple2 3s ease-out 1.2s infinite;
     transform: scale(0.5);
+    border: inherit;
+}
+
+nav {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+nav > p {
+    opacity: .3;
+    cursor: pointer;
+    transition-property: opacity, transform;
+    transition-duration: .5s;
+    position: relative;
+}
+
+nav > p::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: .4rem;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition-property: background, border-radius;
+    transition-duration: .5s;
+    animation: spin 4s infinite linear;
+}
+
+nav > p::after {
+    content: attr(data-nav);
+    padding-left: 18px;
+    text-transform: capitalize;
+}
+
+nav > p:hover {
+    opacity: .7;
+    transform: translateX(-6px)
+}
+
+nav > p:hover::before {
+    border-radius: 3px;
+}
+
+nav > p.active {
+    opacity: 1;
+    transform: translateX(-6px)
+}
+
+nav > p.active::before {
+    background: white;
+    border-radius: 3px;
+}
+
+section#about, section#services, section#clients, section#contact {
+    justify-content: flex-start;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition-property: opacity, transform;
+    transition-duration: .75s;
+    transform: translateY(100vh);
+}
+
+#about > h2, #services h2, #clients h2, #contact h2  {
+    font-size: 3rem;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+#about > h2 + p, #services h2 + p, #clients h2 + p, #contact h2 + p {
+    padding: 0 10px 10px;
+}
+
+#about-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 1000px;
+    justify-content: center;
+}
+
+.about-card {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background: var(--primary-dark);
+    width: 100%;
+    min-width: 200px;
+    transition-property: outline, transform;
+    transition-duration: .5s;
+    outline: 0px solid transparent;
+    cursor: default;
+}
+
+.about-card:hover {
+    outline: 5px solid var(--bright2);
+    transform: scale(1.02);
+}
+
+.about-card > h3 {
+    font-family: monospace;
+    font-size: 1.5rem;
+}
+
+.about-card > h3::before {
+    color: var(--bright2);
+    content: "> ";
+    font-weight: bold;
+}
+
+.next {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: inherit;
+    transition: .25s;
+    animation: spin 4s infinite linear;
+    position: absolute;
+    /* bottom: 20px; */
+}
+
+.next::after {
+    content: "Next";
+    position: absolute;
+    animation: spin 4s infinite linear;
+    animation-direction: reverse;
+}
+
+#about .next, #services .next, #clients .next {
+    margin: 20px 30%;
+    position: relative;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.next:hover {
+    transform: scale(1.1);
+    border-radius: 15px;
+}
+
+#services-chips {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+
+#services-chips > p {
+    padding: 2px 20px;
+    background: #24557a;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition-property: outline, transform;
+    transition-duration: .5s;
+    outline: 0px solid transparent;
+}
+
+#services-chips > p:hover {
+    outline: 5px solid var(--bright2);
+    transform: scale(1.02);
+}
+
+#services-chips > p.new {
+    padding-right: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#services-chips > p.new::after {
+    content: "NEW";
+    padding: 2px 10px 2px 10px;
+    margin: 0 10px;
+    background: var(--bright2);
+    color: black;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#clients {
+    padding-bottom: 20px;
+    position: relative;
+}
+
+#clients-row {
+    width: 100%;
+    height: 175px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.clients-card {
+    aspect-ratio: 1 / 1.37;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: .5s;
+    outline: 0 solid transparent;
+}
+
+.clients-card:hover {
+    transform: scale(1.2);
+    z-index: 2;
+    outline: 4px solid var(--secondary);
+    border-radius: 20px;
+}
+
+section#contact {
+    justify-content: center;
+}
+
+#logo-container.contact-active {
+    transform: translateY(0) !important;
+}
+
+#contact a {
+    font-size: 1.5rem;
+}
+
+#contact a:hover {
+    box-shadow: inset 0px calc(-1.5rem - 8px) 0px -2px var(--secondary);
 }
 
 
@@ -197,3 +530,30 @@ a:hover::before {
         opacity: 0;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    nav {
+        background: var(--bg);
+        border: 20px solid var(--bg);
+        border-radius: 20px;
+        outline: 2px solid white;
+        transform: translateY(-50%) translateX(calc(100% + 22px));
+        transition-property: transform;
+        transition-duration: .5s;
+    }
+
+    nav.nav-open {
+        transform: translateY(-50%);
+    }
+
+    #nav-mobile {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-weight: bold;
+        display: block !important;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 2;
+    }
+  }

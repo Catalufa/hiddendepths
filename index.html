@@ -7,16 +7,93 @@
     <title>Hidden Depths</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Red+Hat+Display|Righteous" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
-<body style="background: black;">
+<body>
     <section id="home">
-        <div id="logo"><img src="/assets/brand/whitehook.svg" alt="Logo"></div>
+        <div id="home-move">
+            <div id="logo-container">
+                <div id="logo"><img src="/assets/brand/whitehook.svg" alt="Logo"></div>
+            </div>
+            <h1 id="title" data-before="hidden" data-after="depths">&nbsp;<noscript>hidden depths</noscript></h1>
+        </div>
         <div id="ripple"></div>
         <div id="home-content" class="flex">
-            <h1 id="title">hidden depths</h1>
             <p id="caption">Creating unique digital experiences</p>
-            <button>See how we work</button>
+            <button id="go">See how we work</button>
         </div>
+    </section>
+    <span id="nav-mobile" style="display: none;">☰</span>
+    <nav>
+        <p data-nav="home" class="active">&nbsp;</p>
+        <p data-nav="about">&nbsp;</p>
+        <p data-nav="services">&nbsp;</p>
+        <p data-nav="clients">&nbsp;</p>
+        <p data-nav="contact">&nbsp;</p>
+    </nav>
+    <section id="about">
+        <h2>we <b>design, develop</b> and <b>maintain</b>.</h2>
+        <p>You come up with the <b>idea,</b> and we'll <b>make it.</b></p>
+        <div id="about-row">
+            <div class="about-card" style="flex-basis: 50%;">
+                <h3>Google Partner scheme</h3>
+                <p>Hidden Depths is proud to be a member of Google Partners, specialising in Service.</p>
+            </div>
+            <div class="about-card" style="flex-basis: 40%;">
+                <h3>Google Advanced Premium IT</h3>
+                <p>We are pleased to have the highest level of qualification in the Google Admin IT programme.</p>
+            </div>
+            <div class="about-card" style="flex-basis: 90%;">
+                <h3>Communication & Collaboration</h3>
+                <p>Communicating well is the key to getting a project completed on-time and on-budget. We work closely with our clients to ensure that you're never left in the dark. <a data-next="clients">See examples</a></p>
+            </div>
+            <div class="about-card" style="flex-basis: 40%;">
+                <h3>Detailed price breakdowns</h3>
+                <p>Our pricing is always extremely competitive and very transparent. <a data-next="contact">Contact us</a></p>
+            </div>
+            <div class="about-card" style="flex-basis: 50%;">
+                <h3>Industry leading technology</h3>
+                <p>All our software is future-proof and secure, and we're always looking for new ways to innovate. <a data-next="contact">Contact us</a></p>
+            </div>
+            <div class="next" data-next="services"></div>
+        </div>
+    </section>
+    <section id="services">
+        <h2>how we can <b>help</b>.</h2>
+        <p>When it comes to versatility, we <b>excel.</b> Whatever you need, we can make.</p>
+        <div id="services-chips">
+            <p>Website design</p>
+            <p>Public sector</p>
+            <p>Private sector</p>
+            <p>E-commerce</p>
+            <p>Ticketing systems</p>
+            <p>User accounts</p>
+            <p class="new">Form building</p>
+            <p>Analytics</p>
+            <div class="next" data-next="clients"></div>
+        </div>
+    </section>
+    <section id="clients">
+        <h2>our <b>clients</b>.</h2>
+        <p>With a comprehensive history of <b>satisfied clients,</b> Hidden Depths is the best choice for your next <b>digital endeavor.</b></p>
+        <div id="clients-row">
+            <div class="clients-card" style="background-image:url(/assets/clients/9.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/3.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/6.png)"></div> 
+            <div class="clients-card" style="background-image:url(/assets/clients/8.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/1.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/2.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/5.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/7.png)"></div>
+            <div class="clients-card" style="background-image:url(/assets/clients/4.png)"></div>
+            <div class="next" data-next="contact"></div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>drop us a <b>line</b>.</h2>
+        <p>Lets <b>build something.</b> Contact us to get started.</p>
+        <a href="mailto:hello@hiddendepths.uk">hello@hiddendepths.uk</a>
+        <button id="copy-email">Copy</button>
     </section>
 </body>
 </html>
